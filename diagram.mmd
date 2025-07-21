@@ -1,0 +1,9 @@
+graph LR
+    A[ArticleService] --addArticle--> B(ArticleRepository)
+    A --getAllArticles--> B
+    A --updateArticle--> B
+    A --deleteArticle--> B
+    C[ArticleController] --getArticleById--> A
+    C --getAllArticles--> A
+    D[API Gateway] -- GET, POST, PUT, DELETE --> C
+    C --request--> D
