@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant User as User
+    participant Controller as Controller
+    participant Service as OllamaService
+    participant Repository as Repository
+
+    User->>Controller: GET /token-limit
+    Controller->>Service: getTokenLimit()
+    Service->>Repository: fetchData()
+    Repository-->>Service: Data
+    Service-->>Controller: Response with token limit data
+    Controller-->>User: Response
