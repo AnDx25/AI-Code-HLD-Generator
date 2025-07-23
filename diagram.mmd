@@ -1,9 +1,14 @@
-graph LR
-    A[ArticleService] --addArticle--> B(ArticleRepository)
-    A --getAllArticles--> B
-    A --updateArticle--> B
-    A --deleteArticle--> B
-    C[ArticleController] --getArticleById--> A
-    C --getAllArticles--> A
-    D[API Gateway] -- GET, POST, PUT, DELETE --> C
-    C --request--> D
+classDiagram
+    class Ollama {
+        -tokenLimit
+        +Ollama()
+        +getTokenLimit()
+        +setTokenLimit(value: number)
+    }
+
+    sequenceDiagram
+        participant O as Ollama
+        participant C as Client
+
+        C->>O: getTokenLimit()
+        O-->>C: tokenLimit

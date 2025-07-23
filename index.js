@@ -5,9 +5,13 @@ import { cloneRepo } from "./githubFetcher.js";
 import { analyseCode } from "./analyser.js";
 
 const main = async () => {
-    const repoPath = await cloneRepo(process.env.REPO_URL);
-    const mermaidDiagram = await analyseCode(repoPath, process.env.OLLAMA_MODEL);
-    console.log("\n📊 Mermaid.js Output:\n", mermaidDiagram);
+    try {
+        console.log("🚀 Starting code analysis...");
+        await analyseCode();
+        console.log("✅ Analysis complete. Check diagram.svg for the visual representation.");
+    } catch (error) {
+        console.error("❌ Error during analysis:", error.message);
+    }
 };
 
 main();
